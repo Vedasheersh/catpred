@@ -14,6 +14,7 @@ CatPred predicts in vitro enzyme kinetic parameters (kcat, Km and Ki) using EC, 
 
 - [Citations](#citations)
 - [License](#license)
+- [Acknowledgements](#acknowledgements)
 </details>
 
 ## Installing pre-requisites <a name="installation"></a>
@@ -91,11 +92,6 @@ The command will first featurize the input file using pre-defined EC and Taxonom
 
 The predictions will be written to a .csv file with a name INPUT_CSV_results.csv
 
-## License <a name="license"></a>
-
-This source code is licensed under the MIT license found in the `LICENSE` file
-in the root directory of this source tree.
-
 ## Citations <a name="citations"></a>
 
 If you find the models useful in your research, we ask that you cite the relevant paper:
@@ -110,15 +106,18 @@ If you find the models useful in your research, we ask that you cite the relevan
   journal={}
 }
 ```
-## Acknowledgements <a name="acknowledgement"></a>
+
+## License <a name="license"></a>
+
+TorchDrug is released under [Apache-2.0 License](LICENSE). LICENSE file is in the root directory of this source tree.
+
+
+## Acknowledgements <a name="acknowledgements"></a>
 
 CatPred makes use of the TorchDrug library. TorchDrug is a [PyTorch]-based machine learning toolbox designed for several purposes.
 
 - You can visit the original repos for TorchDrug and TorchProtein for more info.
 
 [![TorchDrug]](https://torchdrug.ai/) [![TorchProtein]](https://torchprotein.ai/)
-
-License
--------
 
 TorchDrug is released under [Apache-2.0 License](LICENSE).
