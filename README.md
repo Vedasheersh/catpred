@@ -42,6 +42,7 @@ support `mps` devices.
 pip install torch==1.13.0
 pip install git+https://github.com/rusty1s/pytorch_scatter.git
 pip install git+https://github.com/rusty1s/pytorch_cluster.git
+```
 
 ### Now install CatPred ###
 
@@ -53,11 +54,13 @@ pip install .
 wget https://catpred.s3.amazonaws.com/data.tar.gz
 tar -xvzf data.tar.gz
 ```
+
 Download the data folder and pre-trained models. Extract into root directory
 ```bash
 wget https://catpred.s3.amazonaws.com/models.tar.gz
 tar -xvzf models.tar.gz
 ```
+
 ## Usage <a name="usage"></a>
 
 ### Input preparation <a name="preparation"></a>
