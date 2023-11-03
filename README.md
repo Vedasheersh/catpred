@@ -65,8 +65,7 @@ tar -xvzf models.tar.gz
 
 ### Input preparation <a name="preparation"></a>
 
-Prepare an input.csv file as shown in examples/demo.csv 
-Best way is to edit the demo.csv file
+Prepare an input.csv file as shown in catpred/examples/demo.csv 
 
 1. The first column should contain the EC number as per [Enzyme Classification](https://iubmb.qmul.ac.uk/enzyme/). 
 In case of unknown EC number at a particular level, use '-' as a place holder. For example, if the last two levels are unknown then, use 1.1.1.-
@@ -77,6 +76,10 @@ Common names or short forms will not be processed. In case of a rare Organism or
 3. The third column should contain a SMILES string. It should be read-able by rdkit [RDKit](https://www.rdkit.org/). You can use [PubChem](https://pubchem.ncbi.nlm.nih.gov/) or [BRENDA-Ligand](https://www.brenda-enzymes.org/structure_search.php) or [CHE-EBI](https://www.ebi.ac.uk/chebi/) to search for SMILES. Alternatively, you can use [PubChem-Draw](https://pubchem.ncbi.nlm.nih.gov//edit3/index.html) to generate SMILES string for any molecule you draw.
 
 ### Making predictions <a name="prediction"></a>
+
+```bash
+cd catpred
+```
 
 Use the python script (`python run-catpred.py`):
 ```
@@ -107,75 +110,13 @@ If you find the models useful in your research, we ask that you cite the relevan
   journal={}
 }
 ```
+## Acknowledgements <a name="acknowledgement"></a>
+
 CatPred makes use of the TorchDrug library. TorchDrug is a [PyTorch]-based machine learning toolbox designed for several purposes.
 
 - You can visit the original repos for TorchDrug and TorchProtein for more info.
 
 [![TorchDrug]](https://torchdrug.ai/) [![TorchProtein]](https://torchprotein.ai/)
-
-Installation
-------------
-
-TorchDrug can be installed on either Linux, Windows or macOS. It is compatible with
-3.7 <= Python <= 3.10 and PyTorch >= 1.8.0.
-
-### From Conda ###
-
-```bash
-conda install torchdrug -c milagraph -c conda-forge -c pytorch -c pyg
-```
-
-### From Pip ###
-
-```bash
-pip install torch==1.9.0
-pip install torch-scatter torch-cluster -f https://pytorch-geometric.com/whl/torch-1.9.0+cu102.html
-pip install torchdrug
-```
-
-To install `torch-scatter` for other PyTorch or CUDA versions, please see the
-instructions in https://github.com/rusty1s/pytorch_scatter
-
-### From Source ###
-
-```bash
-git clone https://github.com/DeepGraphLearning/torchdrug
-cd torchdrug
-pip install -r requirements.txt
-python setup.py install
-```
-
-### Windows (PowerShell) ###
-
-We need to first install the build tools for Visual Studio. We then install the
-following modules in PowerShell.
-
-```powershell
-Install-Module Pscx -AllowClobber
-Install-Module VSSetup
-```
-
-Initialize Visual Studio in PowerShell with the following commands. We may setup
-this for all PowerShell sessions by writing it to the PowerShell profile. Change
-the library path according to your own case.
-
-```powershell
-Import-VisualStudioVars -Architecture x64
-$env:LIB += ";C:\Program Files\Python37\libs"
-```
-
-### Apple Silicon (M1/M2 Chips) ###
-
-We need PyTorch >= 1.13 to run TorchDrug on Apple silicon. For `torch-scatter` and
-`torch-cluster`, they can be compiled from their sources. Note TorchDrug doesn't
-support `mps` devices.
-
-```bash
-pip install torch==1.13.0
-pip install git+https://github.com/rusty1s/pytorch_scatter.git
-pip install git+https://github.com/rusty1s/pytorch_cluster.git
-pip install torchdrug
-```
 
 License
 -------
