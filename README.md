@@ -81,7 +81,7 @@ If you find the models useful in your research, we ask that you cite the relevan
 }
 ```
 
-[![TorchDrug](asset/torchdrug_logo_full.svg)](https://torchdrug.ai/)
+[![TorchDrug](asset/torchdrug_logo_tight.svg)](https://torchdrug.ai/)
 <h3 align="center">
   with
   <a href="https://torchprotein.ai/">
