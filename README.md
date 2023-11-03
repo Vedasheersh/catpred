@@ -1,31 +1,99 @@
+# CatPred: Machine Learning models for in vitro enzyme kinetic parameter prediction
+
+***Work in progress:*** Current repository only contains codes and models for prediction. Full training/evaluation codes along with datasets will be released here upon publication.
+
+CatPred predicts in vitro enzyme kinetic parameters (kcat, Km and Ki) using EC, Organism and Substrate features. 
+
+<details open><summary><b>Table of contents</b></summary>
+
+
+- [Installing pre-requisites](#installation)
+- [Usage](#usage)
+  - [Input preparation](#preparation)
+  - [Making predictions](#prediction)
+
+- [Citations](#citations)
+- [License](#license)
+</details>
+
+## Installing pre-requisites <a name="installation"></a>
+
+```bash
+pip install pandas numpy tqdm rdkit-pypi ete3
+```
+Clone this repo, download the data folder and extract into root directory 
+```bash
+git clone https://github.com/maranasgroup/catpred.git  # this repo main branch
+cd catpred
+wget https://catpred.s3.amazonaws.com/data.tar.gz
+tar -xvzf data.tar.gz
+```
+
+Download pre-trained models and extract into root directory
+```bash
+wget https://catpred.s3.amazonaws.com/models.tar.gz
+tar -xvzf models.tar.gz
+```
+## Usage <a name="usage"></a>
+
+### Input preparation <a name="preparation"></a>
+
+Prepare an input.csv file as shown in examples/demo.csv 
+Best way is to edit the demo.csv file
+
+1. The first column should contain the EC number as per [Enzyme Classification](https://iubmb.qmul.ac.uk/enzyme/). 
+In case of unknown EC number at a particular level, use '-' as a place holder. For example, if the last two levels are unknown then, use 1.1.1.-
+
+2. The second column should contain the Organism name as per [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy). 
+Common names or short forms will not be processed. In case of a rare Organism or a new strain, use the [NCBI Taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy) website to find the Organism that you think is the closest match.
+
+3. The third column should contain a SMILES string. It should be read-able by rdkit [RDKit](https://www.rdkit.org/). You can use [PubChem](https://pubchem.ncbi.nlm.nih.gov/) or [BRENDA-Ligand](https://www.brenda-enzymes.org/structure_search.php) or [CHE-EBI](https://www.ebi.ac.uk/chebi/) to search for SMILES. Alternatively, you can use [PubChem-Draw](https://pubchem.ncbi.nlm.nih.gov//edit3/index.html) to generate SMILES string for any molecule you draw.
+
+### Making predictions <a name="prediction"></a>
+
+Use the python script (`python run-catpred.py`):
+```
+usage: python run-catpred.py [-i] -input INPUT_CSV [-p] -parameter [PARAMETER]
+
+```
+
+The command will first featurize the input file using pre-defined EC and Taxonomy vocabulary. Then, it will add the rdkit fingerprints for SMILES and output the featurized inputs as a pandas dataframe input_feats.pkl. 
+
+The predictions will be written to a .csv file with a name INPUT_CSV_results.csv
+
+## License <a name="license"></a>
+
+This source code is licensed under the MIT license found in the `LICENSE` file
+in the root directory of this source tree.
+
+## Citations <a name="citations"></a>
+
+If you find the models useful in your research, we ask that you cite the relevant paper:
+
+```bibtex
+@article{In-preparation,
+  author={Boorla, Veda Sheersh and Maranas, Costas D},
+  title={CatPred: Machine Learning models for in vitro enzyme kinetic parameter prediction},
+  year={2023},
+  doi={},
+  url={},
+  journal={}
+}
+```
+
 [![TorchDrug](asset/torchdrug_logo_full.svg)](https://torchdrug.ai/)
-<h1 align="center">
+<h3 align="center">
   with
   <a href="https://torchprotein.ai/">
     <img src="asset/torchprotein_logo_tight.svg" alt="TorchProtein" style="height:26px" />
   </a>
-</h1>
+</h3>
 
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1Tbnr1Fog_YjkqU1MOhcVLuxqZ4DC-c8-#forceEdit=true&sandboxMode=true)
-[![Contributions](https://img.shields.io/badge/contributions-welcome-blue)](https://github.com/DeepGraphLearning/torchdrug/blob/master/CONTRIBUTING.md)
-[![License Apache-2.0](https://img.shields.io/github/license/DeepGraphLearning/torchdrug?color=blue)](https://github.com/DeepGraphLearning/torchdrug/blob/master/LICENSE)
-[![PyPI downloads](https://static.pepy.tech/personalized-badge/torchdrug?period=total&units=international_system&left_color=grey&right_color=blue&left_text=downloads)](https://pypi.org/project/torchdrug/)
-[![TorchDrug Twitter](https://img.shields.io/twitter/url?label=TorchDrug&style=social&url=https%3A%2F%2Ftwitter.com%2FDrugTorch)](https://twitter.com/DrugTorch)
+CatPred makes use of the TorchDrug library. TorchDrug is a [PyTorch]-based machine learning toolbox designed for several purposes.
 
-[Docs] | [Tutorials] | [Benchmarks] | [Papers Implemented]
+- You can visit the original repo for TorchDrug for more info.
 
-[Docs]: https://deepgraphlearning.github.io/torchdrug-site/docs
-[Tutorials]: https://deepgraphlearning.github.io/torchdrug-site/docs/tutorials
-[Benchmarks]: https://deepgraphlearning.github.io/torchdrug-site/docs/benchmark
-[Papers Implemented]: https://deepgraphlearning.github.io/torchdrug-site/docs/paper
-
-TorchDrug is a [PyTorch]-based machine learning toolbox designed for several purposes.
-
-- Easy implementation of graph operations in a PyTorchic style with GPU support
-- Being friendly to practitioners with minimal knowledge about drug discovery
-- Rapid prototyping of machine learning research
-
-[PyTorch]: https://pytorch.org/
+[TorchDrug]:https://torchprotein.ai/
 
 Installation
 ------------
@@ -90,94 +158,6 @@ pip install git+https://github.com/rusty1s/pytorch_scatter.git
 pip install git+https://github.com/rusty1s/pytorch_cluster.git
 pip install torchdrug
 ```
-
-Quick Start
------------
-
-TorchDrug is designed for humans and focused on graph structured data.
-It enables easy implementation of graph operations in machine learning models.
-All the operations in TorchDrug are backed by [PyTorch] framework, and support GPU
-acceleration and auto differentiation.
-
-```python
-from torchdrug import data
-
-edge_list = [[0, 1], [1, 2], [2, 3], [3, 4], [4, 5], [5, 0]]
-graph = data.Graph(edge_list, num_node=6)
-graph = graph.cuda()
-# the subgraph induced by nodes 2, 3 & 4
-subgraph = graph.subgraph([2, 3, 4])
-```
-
-Molecules are also supported in TorchDrug. You can get the desired molecule
-properties without any domain knowledge.
-
-```python
-mol = data.Molecule.from_smiles("CCOC(=O)N", atom_feature="default", bond_feature="default")
-print(mol.node_feature)
-print(mol.atom_type)
-print(mol.to_scaffold())
-```
-
-You may also register custom node, edge or graph attributes. They will be
-automatically processed during indexing operations.
-
-```python
-with mol.edge():
-	mol.is_CC_bond = (mol.edge_list[:, :2] == td.CARBON).all(dim=-1)
-sub_mol = mol.subgraph(mol.atom_type != td.NITROGEN)
-print(sub_mol.is_CC_bond)
-```
-
-TorchDrug provides a wide range of common datasets and building blocks for drug
-discovery. With minimal code, you can apply standard models to solve your own
-problem.
-
-```python
-import torch
-from torchdrug import datasets
-
-dataset = datasets.Tox21()
-dataset[0].visualize()
-lengths = [int(0.8 * len(dataset)), int(0.1 * len(dataset))]
-lengths += [len(dataset) - sum(lengths)]
-train_set, valid_set, test_set = torch.utils.data.random_split(dataset, lengths)
-```
-
-```python
-from torchdrug import models, tasks
-
-model = models.GIN(dataset.node_feature_dim, hidden_dims=[256, 256, 256, 256])
-task = tasks.PropertyPrediction(model, task=dataset.tasks)
-```
-
-Training and inference are accelerated by multiple CPUs or GPUs.
-This can be seamlessly switched in TorchDrug by just a line of code.
-```python
-from torchdrug import core
-
-# Single CPU / Multiple CPUs / Distributed CPUs
-solver = core.Engine(task, train_set, valid_set, test_set, optimizer)
-# Single GPU
-solver = core.Engine(task, train_set, valid_set, test_set, optimizer, gpus=[0])
-# Multiple GPUs
-solver = core.Engine(task, train_set, valid_set, test_set, optimizer, gpus=[0, 1, 2, 3])
-# Distributed GPUs
-solver = core.Engine(task, train_set, valid_set, test_set, optimizer, gpus=[0, 1, 2, 3, 0, 1, 2, 3])
-```
-
-Experiments can be easily tracked and managed through [Weights & Biases platform].
-```python
-solver = core.Engine(task, train_set, valid_set, test_set, optimizer, logger="wandb")
-```
-
-[Weights & Biases platform]: https://wandb.ai/
-
-Contributing
-------------
-
-Everyone is welcome to contribute to the development of TorchDrug.
-Please refer to [contributing guidelines](CONTRIBUTING.md) for more details.
 
 License
 -------
