@@ -80,20 +80,12 @@ If you find the models useful in your research, we ask that you cite the relevan
   journal={}
 }
 ```
-
-[![TorchDrug](asset/torchdrug_logo_tight.svg)](https://torchdrug.ai/)
-<h3 align="center">
-  with
-  <a href="https://torchprotein.ai/">
-    <img src="asset/torchprotein_logo_tight.svg" alt="TorchProtein" style="height:26px" />
-  </a>
-</h3>
-
 CatPred makes use of the TorchDrug library. TorchDrug is a [PyTorch]-based machine learning toolbox designed for several purposes.
 
-- You can visit the original repo for TorchDrug for more info.
+- You can visit the original repos for TorchDrug and TorchProtein for more info.
 
-[TorchDrug]:https://torchprotein.ai/
+[![TorchDrug](asset/torchdrug_logo_tight.svg)](https://torchdrug.ai/)
+[![TorchProtein](asset/torchprotein_logo_tight.svg)](https://torchprotein.ai/)
 
 Installation
 ------------
