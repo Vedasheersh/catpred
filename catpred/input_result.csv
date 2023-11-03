@@ -1,0 +1,4 @@
+,EC,Organism,SMILES,EC1,EC2,EC3,SUPERKINGDOM,PHYLUM,CLASS,ORDER,FAMILY,GENUS,SPECIES,KM mM - avg,KM mM - std
+0,1.1.1.1,Saccharomyces cerevisiae,CCO,1,1.1,1.1.1,Eukaryota,Ascomycota,Saccharomycetes,Saccharomycetales,Saccharomycetaceae,Saccharomyces,Saccharomyces cerevisiae,29.27842835890514,5.958991356097965
+1,1.1.1.1,Homo Sapiens,CCO,1,1.1,1.1.1,Eukaryota,Chordata,Mammalia,Primates,Hominidae,Homo,Homo sapiens,11.711834518210008,6.318976755634433
+2,1.1.1.1,Escherichia coli,CCO,1,1.1,1.1.1,Bacteria,Pseudomonadota,Gammaproteobacteria,Enterobacterales,Enterobacteriaceae,Escherichia,Escherichia coli,11.698837359945077,7.650383466331734
