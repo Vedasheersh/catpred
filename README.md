@@ -18,18 +18,42 @@ CatPred predicts in vitro enzyme kinetic parameters (kcat, Km and Ki) using EC, 
 
 ## Installing pre-requisites <a name="installation"></a>
 
+Installation is compatible with 3.7 <= Python <= 3.10 and PyTorch >= 1.8.0.
+
+Install PyTorch libraries
+
+### From Pip ###
+
 ```bash
-pip install pandas numpy tqdm rdkit-pypi ete3
+pip install torch==1.9.0
+pip install torch-scatter torch-cluster -f https://pytorch-geometric.com/whl/torch-1.9.0+cu102.html
 ```
-Clone this repo, download the data folder and extract into root directory 
+
+To install `torch-scatter` for other PyTorch or CUDA versions, please see the
+instructions in https://github.com/rusty1s/pytorch_scatter
+
+### Apple Silicon (M1/M2 Chips) ###
+
+We need PyTorch >= 1.13 to run TorchDrug on Apple silicon. For `torch-scatter` and
+`torch-cluster`, they can be compiled from their sources. Note TorchDrug doesn't
+support `mps` devices.
+
 ```bash
-git clone https://github.com/maranasgroup/catpred.git  # this repo main branch
-cd catpred
+pip install torch==1.13.0
+pip install git+https://github.com/rusty1s/pytorch_scatter.git
+pip install git+https://github.com/rusty1s/pytorch_cluster.git
+
+### Now install CatPred ###
+
+Clone this repo and install
+```bash
+git clone https://github.com/vedasheersh/CatPred.git  # this repo main branch
+cd CatPred
+pip install .
 wget https://catpred.s3.amazonaws.com/data.tar.gz
 tar -xvzf data.tar.gz
 ```
-
-Download pre-trained models and extract into root directory
+Download the data folder and pre-trained models. Extract into root directory
 ```bash
 wget https://catpred.s3.amazonaws.com/models.tar.gz
 tar -xvzf models.tar.gz
