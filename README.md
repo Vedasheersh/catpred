@@ -84,9 +84,7 @@ CatPred makes use of the TorchDrug library. TorchDrug is a [PyTorch]-based machi
 
 - You can visit the original repos for TorchDrug and TorchProtein for more info.
 
-[![TorchDrug](asset/torchdrug_logo_tight.svg)](https://torchdrug.ai/)
-
-[![TorchProtein](asset/torchprotein_logo_tight.svg)](https://torchprotein.ai/)
+[![TorchDrug](asset/torchdrug_logo_tight.svg)](https://torchdrug.ai/) [![TorchProtein](asset/torchprotein_logo_tight.svg)](https://torchprotein.ai/)
 
 Installation
 ------------
